@@ -22,7 +22,6 @@ The CI/CD pipeline is implemented using GitHub Actions and consists of three mai
 │  - Setup Python                                             │
 │  - Install dependencies                                     │
 │  - Lint with flake8                                         │
-│  - SonarQube scan                                           │
 │  - Trivy filesystem scan                                    │
 └─────────────────────────────────────────────────────────────┘
                             │
@@ -56,12 +55,6 @@ The CI/CD pipeline is implemented using GitHub Actions and consists of three mai
 - Uses flake8 for Python code quality
 - Checks for syntax errors and code style
 - Fails on critical issues
-
-#### SonarQube Scan
-- Analyzes code quality
-- Detects bugs and code smells
-- Security hotspot detection
-- Continues on error (non-blocking)
 
 #### Trivy Filesystem Scan
 - Scans dependencies for vulnerabilities
@@ -124,16 +117,6 @@ Add these in GitHub repository settings → Secrets and variables → Actions:
 ```bash
 cat ~/.kube/config | base64 -w 0
 ```
-
-#### SONAR_TOKEN
-- SonarQube authentication token
-- Generate in SonarQube: My Account → Security → Generate Token
-- Optional (pipeline continues without it)
-
-#### SONAR_HOST_URL
-- SonarQube server URL
-- Example: https://sonarcloud.io
-- Optional (pipeline continues without it)
 
 ### Environment Variables
 
@@ -335,6 +318,6 @@ environment:
 - Time to patch
 
 ### Quality Metrics
-- Code coverage
-- Code quality score
-- Technical debt
+- Code quality (flake8)
+- Security vulnerabilities
+- Build success rate

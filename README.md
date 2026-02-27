@@ -205,7 +205,6 @@ The pipeline includes:
 
 1. Code Quality & Security Scan
    - Linting with flake8
-   - SonarQube code quality analysis
    - Trivy filesystem vulnerability scanning
 
 2. Build and Push Docker Images
@@ -226,8 +225,6 @@ Configure these in GitHub repository settings:
 ```
 GITHUB_TOKEN          # Automatically provided
 KUBECONFIG            # Base64 encoded kubeconfig file
-SONAR_TOKEN           # SonarQube authentication token
-SONAR_HOST_URL        # SonarQube server URL
 ```
 
 ### Generate KUBECONFIG Secret

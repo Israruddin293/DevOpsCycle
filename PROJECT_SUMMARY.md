@@ -67,7 +67,7 @@
 - ✅ Complete workflow (`.github/workflows/ci-cd.yaml`)
 - ✅ Code checkout
 - ✅ Build & test stage
-- ✅ SonarQube quality scan
+- ✅ Flake8 linting
 - ✅ Trivy security scan (filesystem & images)
 - ✅ Docker image build (multi-stage)
 - ✅ Push to GHCR
@@ -253,7 +253,6 @@ helm uninstall microservices
 
 1. **Code Quality & Security**
    - Flake8 linting
-   - SonarQube analysis
    - Trivy filesystem scan
 
 2. **Build & Push**
@@ -291,7 +290,7 @@ helm uninstall microservices
 - **Ingress**: NGINX Ingress Controller
 - **Package Manager**: Helm 3
 - **CI/CD**: GitHub Actions
-- **Security**: Trivy, SonarQube
+- **Security**: Trivy
 - **Monitoring**: Kubernetes Metrics Server
 
 ## 📝 Next Steps
