@@ -145,7 +145,8 @@ project/
 │   ├── DEPLOYMENT.md
 │   ├── SECURITY.md
 │   ├── CI-CD.md
-│   └── QUICKSTART.md
+│   ├── QUICKSTART.md
+│   └── TRIVY-CONFIGURATION.md
 ├── .gitignore
 ├── LICENSE
 ├── Makefile
@@ -161,8 +162,9 @@ project/
 4. ✅ **docs/DEPLOYMENT.md** - Detailed deployment guide
 5. ✅ **docs/SECURITY.md** - Security best practices
 6. ✅ **docs/CI-CD.md** - Pipeline documentation
-7. ✅ **helm/README.md** - Helm chart usage
-8. ✅ **LICENSE** - MIT License
+7. ✅ **docs/TRIVY-CONFIGURATION.md** - Security scanning setup
+8. ✅ **helm/README.md** - Helm chart usage
+9. ✅ **LICENSE** - MIT License
 
 ## 🎯 Architecture Diagram
 

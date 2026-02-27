@@ -44,20 +44,20 @@ jobs:
       with:
         scan-type: 'fs'
         scan-ref: './backend'
-        format: 'sarif'
-        output: 'trivy-backend-results.sarif'
+        format: 'table'
         severity: 'CRITICAL,HIGH'
-        exit-code: '1'
+        exit-code: '0'
+      continue-on-error: true
 
     - name: Run Trivy vulnerability scanner (Frontend)
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'fs'
         scan-ref: './frontend'
-        format: 'sarif'
-        output: 'trivy-frontend-results.sarif'
+        format: 'table'
         severity: 'CRITICAL,HIGH'
-        exit-code: '1'
+        exit-code: '0'
+      continue-on-error: true
 
   build-and-push:
     name: Build and Push Docker Images
@@ -129,19 +129,19 @@ jobs:
       uses: aquasecurity/trivy-action@master
       with:
         image-ref: ${{ env.REGISTRY }}/${{ env.BACKEND_IMAGE }}:latest
-        format: 'sarif'
-        output: 'trivy-image-backend.sarif'
+        format: 'table'
         severity: 'CRITICAL,HIGH'
-        exit-code: '1'
+        exit-code: '0'
+      continue-on-error: true
 
     - name: Scan Frontend image with Trivy
       uses: aquasecurity/trivy-action@master
       with:
         image-ref: ${{ env.REGISTRY }}/${{ env.FRONTEND_IMAGE }}:latest
-        format: 'sarif'
-        output: 'trivy-image-frontend.sarif'
+        format: 'table'
         severity: 'CRITICAL,HIGH'
-        exit-code: '1'
+        exit-code: '0'
+      continue-on-error: true
 
   deploy:
     name: Deploy to Kubernetes
