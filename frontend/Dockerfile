@@ -15,14 +15,21 @@ RUN groupadd -r appuser && useradd -r -g appuser appuser
 
 WORKDIR /app
 
-# Copy dependencies from builder
+# Copy dependencies from builder to correct location
 COPY --from=builder /root/.local /home/appuser/.local
 
 # Copy application code
-COPY --chown=appuser:appuser . .
+COPY --chown=appuser:appuser app.py .
+COPY --chown=appuser:appuser requirements.txt .
+COPY --chown=appuser:appuser templates templates/
 
 # Set PATH for user-installed packages
-ENV PATH=/home/appuser/.local/bin:$PATH
+ENV PATH=/home/appuser/.local/bin:$PATH \
+    PYTHONPATH=/app
+
+# Create necessary directories with proper permissions
+RUN mkdir -p /tmp /home/appuser && \
+    chown -R appuser:appuser /tmp /home/appuser /app
 
 # Switch to non-root user
 USER appuser
@@ -30,9 +37,5 @@ USER appuser
 # Expose port
 EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD python -c "import requests; requests.get('http://localhost:8080/health', timeout=2)"
-
 # Run application
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "app:app"]
+CMD ["python", "-m", "gunicorn", "--bind", "0.0.0.0:8080", "--workers", "2", "--timeout", "120", "app:app"]

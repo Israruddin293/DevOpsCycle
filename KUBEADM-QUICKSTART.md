@@ -25,7 +25,7 @@ sed -i 's/127.0.0.1/<EC2-PUBLIC-IP>/g' kubeconfig-github.yaml
 ### 4. Encode for GitHub
 
 ```bash
-cat kubeconfig-github.yaml | base64 -w 0
+cat kubeconfig-github.yaml | base64 -w 0 to get encoded file
 # Copy the output
 ```
 

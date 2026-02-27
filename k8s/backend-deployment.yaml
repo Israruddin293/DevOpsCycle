@@ -23,7 +23,7 @@ spec:
         fsGroup: 1000
       containers:
       - name: backend
-        image: your-registry/backend:latest
+        image: ghcr.io/israruddin293/devopscycle/backend:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
@@ -74,7 +74,7 @@ spec:
           failureThreshold: 3
         securityContext:
           allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: false
           capabilities:
             drop:
             - ALL
